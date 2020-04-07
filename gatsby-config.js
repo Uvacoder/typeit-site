@@ -153,6 +153,33 @@ module.exports = {
         },
         extensions: [".js"]
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-lunr`,
+      options: {
+        languages: [
+          {
+            name: 'en',
+            filterNodes: node => true
+          }
+        ],
+        fields: [
+          { name: 'title', store: true, attributes: { boost: 20 } },
+          { name: 'content' },
+          { name: 'url', store: true },
+        ],
+        resolvers: {
+          MarkdownRemark: {
+            title: node => node.frontmatter.title,
+            content: node => node.rawMarkdownBody,
+            url: node => node.fields.url,
+          },
+        },
+        filename: 'search_index.json',
+        fetchOptions: {
+          credentials: 'same-origin'
+        },
+      },
+    },
   ]
 };

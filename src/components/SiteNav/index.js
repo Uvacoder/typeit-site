@@ -4,6 +4,7 @@ import PageHeadingContext from "../../PageHeadingContext";
 import ToggleButton from './ToggleButton';
 import { sendGaEvent } from "../../utilities";
 import toggleOverflow from "../../helpers/toggleOverflow";
+import Search from "../Search";
 
 export default ({ pixelAnchorRef }) => {
   const headingCtx = useContext(PageHeadingContext);
@@ -127,6 +128,9 @@ export default ({ pixelAnchorRef }) => {
             ${menuIsOpen ? "translate-none" : ""}
           `}
         >
+
+          <Search />
+          
           <ul className="self-start mx-auto lg:-mx-3 lg:mt-0 block lg:flex mb-8 lg:mb-0">
 
             {links.map(link => {
